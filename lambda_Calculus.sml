@@ -74,42 +74,22 @@ fun subst (Var y)       (Var x) M = if (y=x) then M else Var y
 
 
 
+(*More notes in the md file*)
+
 (*
-Alpha Reduction
+Simply typed lambda calculus
+types:
+    t = bool 
+    | t1 -> t2
 
-λx.e  -α->  λy.e [x/y]
+terms:
+    term = x
+    |   e1 e2
+    |   λx:t.e
+        # problem here is e might not be well typed
+    *)
 
+datatype t = Asig of bool
+        | impl of t->t
 
-
-Beta reduction
-
-(λx.e)M  -β->  e [x/M]
-
-
-freshness conditions:
-If any M already has a variable named x, change λx.e to λy.e [x/y], where y is a unique variable not present in M.
-Ie. if in substitution, there is a variable that gets rebound to a symbol that is same as that of a bound variable, change the bound variable to a new, unique symbol.
-
-"Variable Calculus Gymnastics is going to be a problem" -ppk
-
-
-Beta reduction is a relation on L where L is the set of all lambda calculus expressions.
-β ⊆ LxL
-
-some definitions
-Reflexive Relation: you know
-Symmetric Relation: you know
-Transitive Relation: you know
-
-Reflexive closure of R: Smallest reflexive relation R' such that R ⊆ R'
-    Trivially, reflexive closure of R (⊆ AxA) = R U {(xi, xi) | ∀xi ∈ A}
-Symmetric closure of R: Smallest symmetric relation R' such that R ⊆ R'
-    Trivially, symmetric closure of R (⊆ AxA) = R U {(xi, xj) | ∀(xj, xi) ∈ R}
-*)
-
-
-
-(*Value*)
-(*
-Expression M is in normal form if there isn't a subterm of M which is of the form (λx.e)e'
-*)
+datatype term = (*hmm*)
