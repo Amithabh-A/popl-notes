@@ -76,3 +76,37 @@ Normal form is unique.
 </pre>
 
 Simply typed Lambda Calculus: In the sml file
+
+
+&nbsp;
+## Fix point
+Can be used to make recursions
+<pre>
+fixed point of expression F is expression v such that F v = v 
+</pre> 
+
+say for example \
+Factorial \
+`fun F f = fn n => if n=0 then 1 else (n*f(n-1))`
+
+let there exist fixed point g of F
+ie. F g = g
+
+then F g = g = fn n => if n=0 then 1 else (n*g(n-1))\
+recursion!
+
+&nbsp;
+<pre>
+Θ = λp.(F p p)
+Θ Θ = λp.(F p p) λp.(F p p)
+    = F λp.(F p p) λp.(F p p)
+    = F Θ Θ
+    
+This is pretty useful,
+
+Fixed point calculator:
+
+T = Θ Θ
+T F = λp.(F p p) λp.(F p p) F
+    = F
+    # not fully making sense yet
