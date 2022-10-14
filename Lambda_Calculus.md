@@ -110,3 +110,63 @@ T = Θ Θ
 T F = λp.(F p p) λp.(F p p) F
     = F
     # not fully making sense yet
+</pre>
+
+
+## Simply typed Lambda calculus
+<pre>
+types:
+    t = bool 
+    | t1 -> t2
+
+terms:
+    term = x        (variable)
+    |   e1 e2       (Application)
+    |   λx:t.e      (Abstraction)
+        # problem here is e might not be well typed
+</pre>
+
+<pre>
+Judgements:
+e:t => e is well typed and has type t
+
+Γ ⊢ e:t  (e has type t in contex of Γ)
+Γ = { x1:t1, x2:t2 ... xn:tn}
+
+some notations
+1. x:t' ∉ Γ
+2. Γ, x:t = Γ ∪ {x.t}
+
+Inference:
+J1
+J2
+J3
+----
+J
+
+
+Inference ruls:
+1.
+
+----
+x:T ⊢ x:t
+
+
+2.
+Γ ⊢ e1:t' -> t
+Γ ⊢ e2:t'
+----
+Γ ⊢ e1 e2 : t
+
+
+3.
+
+----
+Γ ⊢ λx:t1.e : t1->t2
+
+
+Weakening:
+Γ ⊢ e:t
+----
+Γ,x.t ⊢ e:t
+</pre>

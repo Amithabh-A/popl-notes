@@ -83,13 +83,8 @@ types:
     | t1 -> t2
 
 terms:
-    term = x
-    |   e1 e2
-    |   λx:t.e
+    term = x        (variable)
+    |   e1 e2       (Application)
+    |   λx:t.e      (Abstraction)
         # problem here is e might not be well typed
     *)
-
-datatype t = Asig of bool
-        | impl of t->t
-
-datatype term = (*hmm*)
