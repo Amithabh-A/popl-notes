@@ -1,5 +1,5 @@
 
-## Simply typed Lambda calculus
+# Simply typed Lambda calculus
 <pre>
 types:
     t = bool 
@@ -127,3 +127,32 @@ INDEX 2
 ----
 Γ ⊢ lst e : t2
 </pre>
+
+## Parameter polymorphism
+
+λx.x : t for any arbitrary type t
+ie. 
+<pre>
+Fix any type a,b
+
+
+1. x : a ⊢ x:a      (VAR)
+2. x:a, y:b ⊢ x:a   (Weakening)
+3. ⊢ (λx:a.x) : a->a    (ABS 1)
+4. x:a ⊢ λy:b.x : b->a  (ABS 2)
+3. ⊢ λ(x:a).(λ(y:b).x) : a->b->a (ABS 3)
+
+</pre>
+fn(x:a) => y is exactly same as λx:a.y
+
+
+<pre>
+monotypes
+t = basic types
+    | t1->t2
+    | a (type variable)
+
+type Scheme
+j = t
+    | hmmmm
+    
