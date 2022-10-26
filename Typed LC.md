@@ -128,6 +128,8 @@ INDEX 2
 Γ ⊢ lst e : t2
 </pre>
 
+---- 
+
 ## Parameter polymorphism
 
 λx.x : t for any arbitrary type t
@@ -149,10 +151,66 @@ fn(x:a) => y is exactly same as λx:a.y
 <pre>
 monotypes
 t = basic types
-    | t1->t2
-    | a (type variable)
+    | a         (type variable)
+    | t1->t2    (function type)
 
 type Scheme
-j = t
-    | hmmmm
-    
+σ = t           (Any monotype is a type scheme)
+    | ∀a σ₁
+
+</pre>
+Judgment conclusions:
+<pre>
+Monotypes:
+
+1.
+b basictype
+----
+b monotype
+
+2.
+a type variable
+----
+a monotype
+
+3.
+t1 monotype
+t2 monotype
+----
+t1->t2 monotype
+
+
+Specialisation
+Γ ⊢ e:σ
+----
+Γ ⊢ e:σ'
+            provided σ' ≤ σ
+
+Generelisation
+Γ ⊢ e:σ
+----
+Γ ⊢ e:∀a σ
+            provided a is not free in Γ
+</pre>
+
+<pre>
+Eg:
+1.
+∀b ∀a a -> (b -> a)  type scheme?
+
+a is monotype
+b is monotype
+b -> a is monotype
+a -> (b -> a) is monotype
+a -> (b -> a) is a type scheme (all monotypes are type schemes)
+∀a a -> (b -> a) is a type scheme
+∀b ∀a a -> (b -> a) is a type scheme
+
+2.
+∀ a a -> (∀b b->a) type scheme?
+No, quantifiers should encompass everything else.
+</pre>
+
+### System F:
+Well Types are undecidable \
+Most general polymorphic type lambda calculus
