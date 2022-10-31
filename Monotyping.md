@@ -48,14 +48,14 @@ t2 monotype
 t1->t2 monotype
 
 
-Specialisation
+SPEC (Specialisation)
 Γ ⊢ e:σ
 ----
 Γ ⊢ e:σ'
             provided σ' ≤ σ
             σ' is a specialization of σ
 
-Generalisation
+GEN (Generalisation)
 Γ ⊢ e:σ
 ----
 Γ ⊢ e:∀a σ
@@ -63,6 +63,7 @@ Generalisation
 </pre>
 typing rules of STLC still apply, but only on Monotypes
 
+## Specialization
 <pre>
 Specialization σ' ≤ σ
 
@@ -89,10 +90,24 @@ Let σ = ∀a1 ∀a2 ∀a3.....∀an T
     σ' =  ∀b1 ∀b2 ∀b3.....∀bm T[t1/a1][t2/a2][t3/a3]....[tn/an] ≤ σ
         Where bi are not free in σ.
         bi could be present in ti.
+
+
+So the definition of specialization:
+σ' = ∀b1 ∀b2 ∀b3.....∀bm T'
+σ = ∀a1 ∀a2 ∀a3.....∀an T
+σ' ≤ σ
+=> ∃ monotypes t1,t2,t3...tn
+st.
+    1.
+    T' = T[t1/a1][t2/a2][t3/a3]....[tn/an]
+
+    2.
+    ∀b1 ∀b2 ∀b3.....∀bm is not free in σ
+
 </pre>
 
 
-Eg: \
+## Eg:
 Type schemes
 <pre>
 1.
@@ -111,18 +126,34 @@ a -> (b -> a) is a type scheme (all monotypes are type schemes)
 
 No, quantifiers should encompass everything else.
 </pre>
-
 Specialization
 <pre>
-3.
+1.
 σ = ∀ a (a -> b -> a)
 Is int->int->int a specialization of σ?
 
 No
 b is free, you can't assume anything about it.
 int -> b -> int ≤ σ
-
 </pre>
+Proof rules
+<pre>
+1.
+Derive ⊢ (λx.x) : ∀a. a -> a
+
+x:a ⊢ x:a
+⊢ (λx:a.x) : a -> a     (ABS 1)
+⊢ (λx.x) : ∀a. a -> a   (GEN)
+</pre>
+----
+# Well typed-ness
+Give  closed expression e,
+1. Determine if e is well typed
+2. If yes, find the most general type σ such that ⊢ e:σ is provable
+    - ie. find ⊢ e:σ such that ∀ σ', ⊢ e:σ' => σ' ≤ σ 
+
+*Definition*: Closure (Γ, T) is the 
+
 
 ### System F:
 Well Types are undecidable \
