@@ -152,9 +152,48 @@ Give  closed expression e,
 2. If yes, find the most general type σ such that ⊢ e:σ is provable
     - ie. find ⊢ e:σ such that ∀ σ', ⊢ e:σ' => σ' ≤ σ 
 
-*Definition*: Closure (Γ, T) is the 
+Definition  
+Closure (Γ, T) = ∀a1 ∀a2 ∀a3.....∀an T \
+where {a1,a2,a3.....,an} = Var(T) / FV(Γ)
 
+&nbsp;
+## Type Inference Problem
+Given Γ and e, compute the most general type scheme σ (if possible) such that Γ ⊢ e : σ \
+OR \
+Given Γ and e, compute (if possible) a monotype T such that
+1. Γ ⊢ e : T
+2. If σ is the closure (Γ, T), then σ should be the next general type such that Γ ⊢ e : σ
 
-### System F:
-Well Types are undecidable \
-Most general polymorphic type lambda calculus
+<pre>
+e can be one of 3 possibilities
+1. e = x
+2. e = e1 e2
+3. e = λx.e'
+
+1. Direct inference 
+    x : t ⊢ e : t
+
+2. Recursive inferences, compute types of e1 and e2
+    Γ ⊢ e1 : t1
+    Γ ⊢ e2 : t2
+
+    solve for 2 fresh monotypes a and b s.t
+    t1 ≡ a -> b
+    t2 ≡ a
+    (This is the unification algorithm)
+
+3. 
+</pre>
+
+## Eg:
+<pre>
+map : ∀a∀b (a->b) -> a list -> b list
+incr : int -> int
+
+e = map incr
+Γ = {map : map : ∀a∀b (a->b) -> a list -> b list,
+    incr : int -> int}
+
+consider a = (int -> int) -> int list -> int list
+b = (int -> int)
+</pre>
