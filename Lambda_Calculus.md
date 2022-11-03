@@ -100,12 +100,8 @@ recursion!
     = F λp.(F p p) λp.(F p p)
     = F Θ Θ
     
-This is pretty useful,
-
-Fixed point calculator:
-
 T = Θ Θ
-T F = λp.(F p p) λp.(F p p) F
-    = F
-    # not fully making sense yet
+F T = T
+T is the fixed point of F
+This will work for any F, so you can trivially calculate the fixed point for a lambda calculus expression
 </pre>
