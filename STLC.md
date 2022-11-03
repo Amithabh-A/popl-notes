@@ -59,7 +59,7 @@ Weakening:
 Γ,x.t ⊢ e:t
 
 Contraction:
-Γ ∪ {x:t1} ∪ {x:t2} ⊢ e:t
+Γ ∪ {x:t1} ∪ {x:t1} ⊢ e:t
 ----
 Γ ∪ {x:t1} ⊢ e:t
 </pre>
