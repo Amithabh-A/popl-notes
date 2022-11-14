@@ -59,7 +59,7 @@ Weakening:
 Γ,x.t ⊢ e:t
 
 Contraction:
-Γ ∪ {x:t1} ∪ {x:t2} ⊢ e:t
+Γ ∪ {x:t1} ∪ {x:t1} ⊢ e:t
 ----
 Γ ∪ {x:t1} ⊢ e:t
 </pre>
@@ -79,7 +79,7 @@ Q. type of λ(x:bool)(y:int).x
 1) {x:bool} ⊢ x:bool (VAR)
 2) {x:bool},{y:int} ⊢ x:bool  (Weakening)
 3) {x:bool} ⊢ λy:int.x : int -> bool
-4) ⊢ λ(x:bool)(y:int).x : int -> bool -> int
+4) ⊢ λ(x:bool)(y:int).x : bool -> int -> bool
 </pre>
 
 We say e is **well typed** in context of Γ if Γ ⊢ e:t can be proven for some type t. \
