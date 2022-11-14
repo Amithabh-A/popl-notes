@@ -74,3 +74,41 @@ Input :     (s1,t1),(s2,t2),(s3,t3)...(sn,tn)
 Output :    σ such that Si[σ] = ti[σ] ∀ i ≤ n
 
 Unify list is just a list fold for unify
+
+</pre>
+
+<pre>
+fun unify σ s t = y if s is a variable y or t is a variable y
+|   unify σ f(s1,s2..sn) f(t1,t2..tn) = unify_list σ [(s1,t1), (s2,t2)..(sn,tn)]  
+
+
+
+fun unify_list σ []          = σ
+|   unify_list σ ((s,t)::xs) = unify_list (unify σ s t) sx
+
+</pre>
+
+
+## STLC type inference algorithm using Unification
+    
+<pre>
+type t = basictype | t -> t
+signature sigma = basictype | { -> }
+            arity (basictype) = 0
+            arity (->) = 2
+</pre>
+
+Given Γ and e, compute monotype t such that Γ ⊢ e : Closure(Γ, t) = ∀a1...∀an t where {a1...an } = Var(t)\Free(Γ)
+
+or
+
+Given Γ and e, compute monotype t and subtitution ƍ such that Γ ⊢ e : Closure(Γ, t[ƍ])
+
+VAR:
+
+e is a variable x  
+(x:σ) ∈ Γ  
+suppose σ = ∀ a1, a2... an t  
+then compute fresh variables b1,b2...bn such, t' = t[a1/b1][a2/b2]...[an/bn]
+
+Idk man refer ppk notes here....
