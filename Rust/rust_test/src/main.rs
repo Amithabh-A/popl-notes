@@ -1,5 +1,12 @@
 // This is a test program
 // Run with cargo run in ..
+
+//Function to test memory allocation
+fn foo(u:Box<u32>)
+{
+    println!("In foo");
+}
+
 fn main() {
     println!("A simple Testing program in rust");
     
@@ -17,11 +24,13 @@ fn main() {
     println!("Assigning b <- a");
     println!("Boxed variable b is {}", b);
     //println!("Boxed variable a is now {}", a); //This line will throw an error!
+    foo(b);
+    //println!("Boxed variable b is {}", b); //This line throws an error as b was deallocated by foo()
 
-       
+     
 
     /*
-    loops
+    //loops
     let mut count:u32 = 0;
     loop
     {

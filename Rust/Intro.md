@@ -59,3 +59,5 @@ Normal variables (say u32) has copy semantics.
 Boxes (say Box\<u32>) has move sematics
 
 Multiple pointers cannot point to the same object.
+
+Memory gets deallocated (for box) if owner does not exist any longer.
