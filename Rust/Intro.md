@@ -39,3 +39,23 @@ $ cargo run
 
 
 This means pure value 0 and resource STDIN are the same thing, both 0.
+
+---
+## Assignment (=)
+
+Types of assigments:
+- Shallow copy:  
+        Simple copy the pointer
+- Deep copy:   
+        Allocate the space and copy each
+
+Usually, deep copy is done since modern compilers have really good garbage collection.  
+Shallow copy is useful for precise control, and when garbage collection has to be predictable.  
+
+Rust expects no garbage collection by default.  
+It can have either Pure values, or resources kept in a `Box`.  
+
+Normal variables (say u32) has copy semantics.  
+Boxes (say Box\<u32>) has move sematics
+
+Multiple pointers cannot point to the same object.
