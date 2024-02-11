@@ -105,3 +105,6 @@ F T = T
 T is the fixed point of F
 This will work for any F, so you can trivially calculate the fixed point for a lambda calculus expression
 </pre>
+
+
+hello there 
